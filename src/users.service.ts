@@ -1,6 +1,6 @@
 import { v4 } from 'uuid';
 import { users } from './users/usersData.ts';
-import { IUser, UserDto } from './users/user.iterface.ts';
+import { IUser, UserDto } from './types/user.iterface.ts';
 
 export const getAllUsers = async (): Promise<IUser[]> => users;
 

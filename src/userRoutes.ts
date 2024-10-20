@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { getAllUsers, getUserById } from './users.service.ts';
 import { sendResponse } from './helper/responses.ts';
-import { HttpStatusCode } from './helper/httpStatus.interface.ts';
+import { HttpStatusCode } from './types/http-status.interface.ts';
 import { validate as isUuid } from 'uuid';
 
 export const userRoutes = async (

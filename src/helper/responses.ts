@@ -1,5 +1,5 @@
-import { IncomingMessage, ServerResponse } from 'http';
-import { HttpStatusCode } from './httpStatus.interface.ts';
+import { ServerResponse } from 'http';
+import { HttpStatusCode } from '../types/http-status.interface.ts';
 
 export const sendResponse = (
   res: ServerResponse,

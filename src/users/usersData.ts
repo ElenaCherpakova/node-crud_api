@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { IUser } from './user.iterface.ts';
+import { IUser } from '../types/user.iterface.ts';
 
 export let users: IUser[] = [
   {
