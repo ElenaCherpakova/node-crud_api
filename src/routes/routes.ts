@@ -5,12 +5,12 @@ import {
   getAllUsers,
   getUserById,
   updateUser,
-} from '../service/user.service.ts';
-import { sendResponse } from '../responses.ts';
-import { HttpStatusCode } from '../types/http-status.interface.ts';
+} from '../service/user.service';
+import { sendResponse } from '../responses';
+import { HttpStatusCode } from '../types/http-status.interface';
 import { validate } from 'uuid';
-import { parseRequestBody } from '../utils/parseReqBody.ts';
-import { UserDto } from '../types/user.iterface.ts';
+import { parseRequestBody } from '../utils/parseReqBody';
+import { UserDto } from '../types/user.iterface';
 
 export const userRoutes = async (
   req: IncomingMessage,

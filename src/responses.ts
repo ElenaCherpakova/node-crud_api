@@ -1,5 +1,5 @@
 import { ServerResponse } from 'http';
-import { HttpStatusCode } from './types/http-status.interface.ts';
+import { HttpStatusCode } from './types/http-status.interface';
 
 export const sendResponse = (
   res: ServerResponse,

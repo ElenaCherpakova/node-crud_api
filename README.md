@@ -31,4 +31,12 @@ This repository contains a detailed guide for installing, running, and using the
   ```bash
   npm run start:dev
   ```
+- Production mode
+  ```bash
+  npm run start:prod
+  ```
+### Run test
 
+```bash
+  npm run jest
+```

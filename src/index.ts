@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
-import { userRoutes } from './routes/routes.ts';
+import { userRoutes } from './routes/routes';
 import { createServer, IncomingMessage, ServerResponse } from 'node:http';
-import { HttpStatusCode } from './types/http-status.interface.ts';
+import { HttpStatusCode } from './types/http-status.interface';
 dotenv.config();
 
 if (!process.env.PORT) {
