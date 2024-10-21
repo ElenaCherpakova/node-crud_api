@@ -1,3 +1,4 @@
+import * as http from 'http';
 import cluster from 'cluster';
 import { cpus } from 'os';
 import { createServer, IncomingMessage, ServerResponse } from 'http';
@@ -19,11 +20,20 @@ if (cluster.isPrimary) {
 
   const loadBalancer = (req: IncomingMessage, res: ServerResponse) => {
     currentWorkerIndex = (currentWorkerIndex + 1) % workers.length;
-    const worker = workers[currentWorkerIndex];
 
-    if (worker) {
-      worker.send({ req: req.url, method: req.method, headers: req.headers });
-    }
+    const workerPort = PORT + currentWorkerIndex + 1;
+    const options = {
+      hostname: 'localhost',
+      port: workerPort,
+      path: req.url,
+      method: req.method,
+      headers: req.headers,
+    };
+    const proxy = http.request(options, (workerRes) => {
+      res.writeHead(workerRes.statusCode || 500, workerRes.headers);
+      workerRes.pipe(res, { end: true });
+    });
+    req.pipe(proxy, { end: true });
   };
   createServer((req, res) => {
     loadBalancer(req, res);
