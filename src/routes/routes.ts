@@ -52,32 +52,21 @@ export const userRoutes = async (
     }
     if (url?.startsWith('/api/users/')) {
       const userId = url.split('/')[3];
+      if (!validate(userId)) {
+        return sendResponse(res, HttpStatusCode.BAD_REQUEST, {
+          message: 'Invalid user id',
+        });
+      }
+      const user = await getUserById(userId);
+      if (!user) {
+        return sendResponse(res, HttpStatusCode.NOT_FOUND, {
+          message: 'User not found',
+        });
+      }
       if (method === 'GET') {
-        if (!validate(userId)) {
-          return sendResponse(res, HttpStatusCode.BAD_REQUEST, {
-            message: 'Invalid user id',
-          });
-        }
-        const user = await getUserById(userId);
-        if (!user) {
-          return sendResponse(res, HttpStatusCode.NOT_FOUND, {
-            message: 'User not found',
-          });
-        }
         return sendResponse(res, HttpStatusCode.OK, user);
       }
       if (method === 'PUT') {
-        if (!validate(userId)) {
-          return sendResponse(res, HttpStatusCode.BAD_REQUEST, {
-            message: 'Invalid user id',
-          });
-        }
-        const user = await getUserById(userId);
-        if (!user) {
-          return sendResponse(res, HttpStatusCode.NOT_FOUND, {
-            message: 'User not found',
-          });
-        }
         const userToUpdate: UserDto = await parseRequestBody(req);
         if (
           !userToUpdate.username ||
@@ -100,17 +89,6 @@ export const userRoutes = async (
         return sendResponse(res, HttpStatusCode.OK, updatedUser);
       }
       if (method === 'DELETE') {
-        if (!validate(userId)) {
-          return sendResponse(res, HttpStatusCode.BAD_REQUEST, {
-            message: 'Invalid user id',
-          });
-        }
-        const user = await getUserById(userId);
-        if (!user) {
-          return sendResponse(res, HttpStatusCode.NOT_FOUND, {
-            message: 'User not found',
-          });
-        }
         await deleteUser(userId);
         return sendResponse(res, HttpStatusCode.NO_CONTENT, {});
       }
