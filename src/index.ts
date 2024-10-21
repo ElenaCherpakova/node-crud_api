@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import { userRoutes } from './routes/routes.ts';
-import { createServer, IncomingMessage, ServerResponse } from 'http';
+import { createServer, IncomingMessage, ServerResponse } from 'node:http';
 import { HttpStatusCode } from './types/http-status.interface.ts';
 dotenv.config();
 

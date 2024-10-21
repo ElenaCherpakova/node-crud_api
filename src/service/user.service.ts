@@ -21,7 +21,7 @@ export const updateUser = async (
 ): Promise<IUser | null> => {
   const findUserIndex = users.findIndex((user) => user.id === id);
   if (findUserIndex === -1) {
-    return null
+    return null;
   }
   const findUser = users[findUserIndex];
   const updatedUser: IUser = { ...findUser, ...updateUser };
@@ -30,10 +30,10 @@ export const updateUser = async (
 };
 
 export const deleteUser = async (id: string): Promise<null | void> => {
-    const findUser = users.find((user) => user.id === id);
-    if (!findUser) {
-      return null
-    }
-    users = users.filter((user) => user.id !== id);
-    return;
+  const findUser = users.find((user) => user.id === id);
+  if (!findUser) {
+    return null;
+  }
+  users = users.filter((user) => user.id !== id);
+  return;
 };
