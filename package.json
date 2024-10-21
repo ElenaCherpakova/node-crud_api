@@ -7,12 +7,12 @@
         "start": "node dist/index.js",
         "start:dev": "nodemon --exec ts-node src/index.ts",
         "start:prod": "npm run build && npm run start",
+        "start:multi": "ts-node src/cluster.ts",
         "test:verbose": "jest",
         "test:watch": "jest --watch",
         "format": "prettier --write \"src/**/*.ts\"",
         "lint": "eslint ./src",
         "jest": "jest --detectOpenHandles"
-
     },
     "author": "",
     "license": "ISC",
