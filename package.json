@@ -10,7 +10,7 @@
         "test:verbose": "jest",
         "test:watch": "jest --watch",
         "format": "prettier --write \"src/**/*.ts\"",
-        "lint": "eslint \"src/**/*.ts\" --fix"
+        "lint": "eslint ./src"
     },
     "author": "",
     "license": "ISC",

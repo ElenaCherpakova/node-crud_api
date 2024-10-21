@@ -29,10 +29,6 @@ This repository contains a detailed guide for installing, running, and using the
 
 - Development mode
   ```bash
-  npm run dev
+  npm run start:dev
   ```
-- Build and run
-  ```bash
-  npm run build
-  npm start
-  ```
+
