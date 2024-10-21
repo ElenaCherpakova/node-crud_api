@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1729486685143" clover="3.2.0">
+  <project timestamp="1729486685143" name="All files">
+    <metrics statements="24" coveredstatements="7" conditionals="2" coveredconditionals="0" methods="9" coveredmethods="1" elements="35" coveredelements="8" complexity="0" loc="24" ncloc="24" packages="1" files="1" classes="1"/>
+    <file name="user.service.ts" path="/Users/elenacherpakova/Desktop/rs_school/node-crud_api/src/service/user.service.ts">
+      <metrics statements="24" coveredstatements="7" conditionals="2" coveredconditionals="0" methods="9" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="9" count="0" type="stmt"/>
+      <line num="11" count="1" type="stmt"/>
+      <line num="12" count="0" type="stmt"/>
+      <line num="13" count="0" type="stmt"/>
+      <line num="14" count="0" type="stmt"/>
+      <line num="15" count="0" type="stmt"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="22" count="0" type="stmt"/>
+      <line num="23" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="24" count="0" type="stmt"/>
+      <line num="26" count="0" type="stmt"/>
+      <line num="27" count="0" type="stmt"/>
+      <line num="28" count="0" type="stmt"/>
+      <line num="29" count="0" type="stmt"/>
+      <line num="32" count="1" type="stmt"/>
+      <line num="33" count="0" type="stmt"/>
+      <line num="34" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="35" count="0" type="stmt"/>
+      <line num="37" count="0" type="stmt"/>
+      <line num="38" count="0" type="stmt"/>
+    </file>
+  </project>
+</coverage>
