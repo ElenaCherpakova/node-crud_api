@@ -10,7 +10,8 @@ import { sendResponse } from '../responses';
 import { HttpStatusCode } from '../types/http-status.interface';
 import { validate } from 'uuid';
 import { parseRequestBody } from '../utils/parseReqBody';
-import { UserDto } from '../types/user.interface';
+import { UserDto } from '../types/user.iterface';
+import { HTTP_METHODS } from '../types/http-methods.interface';
 
 export const userRoutes = async (
   req: IncomingMessage,
@@ -25,11 +26,11 @@ export const userRoutes = async (
       });
     }
     if (url === '/api/users') {
-      if (method === 'GET') {
+      if (method === HTTP_METHODS.GET) {
         const users = await getAllUsers();
         return sendResponse(res, HttpStatusCode.OK, users);
       }
-      if (method === 'POST') {
+      if (method === HTTP_METHODS.POST) {
         const newUser: UserDto = await parseRequestBody(req);
         if (
           !newUser.username ||
@@ -37,10 +38,12 @@ export const userRoutes = async (
           !newUser.age ||
           typeof newUser.age !== 'number' ||
           !newUser.hobbies ||
-          !Array.isArray(newUser.hobbies)
+          !Array.isArray(newUser.hobbies) ||
+          !newUser.hobbies.every((hobby) => typeof hobby === 'string')
         ) {
           return sendResponse(res, HttpStatusCode.BAD_REQUEST, {
-            message: 'Invalid user data',
+            message:
+              'Invalid user data. Please provide a valid username, age, and hobbies (as strings).',
           });
         }
         const user = await createUser(newUser);
@@ -63,10 +66,10 @@ export const userRoutes = async (
           message: 'User not found',
         });
       }
-      if (method === 'GET') {
+      if (method === HTTP_METHODS.GET) {
         return sendResponse(res, HttpStatusCode.OK, user);
       }
-      if (method === 'PUT') {
+      if (method === HTTP_METHODS.PUT) {
         const userToUpdate: UserDto = await parseRequestBody(req);
         if (
           !userToUpdate.username ||
@@ -74,10 +77,12 @@ export const userRoutes = async (
           !userToUpdate.age ||
           typeof userToUpdate.age !== 'number' ||
           !userToUpdate.hobbies ||
-          !Array.isArray(userToUpdate.hobbies)
+          !Array.isArray(userToUpdate.hobbies) ||
+          !userToUpdate.hobbies.every((hobby) => typeof hobby === 'string')
         ) {
           return sendResponse(res, HttpStatusCode.BAD_REQUEST, {
-            message: 'Invalid user data',
+            message:
+              'Invalid user data. Please provide a valid username, age, and hobbies (as strings).',
           });
         }
         const updatedUser = await updateUser(userId, userToUpdate);
@@ -88,7 +93,7 @@ export const userRoutes = async (
         }
         return sendResponse(res, HttpStatusCode.OK, updatedUser);
       }
-      if (method === 'DELETE') {
+      if (method === HTTP_METHODS.DELETE) {
         await deleteUser(userId);
         return sendResponse(res, HttpStatusCode.NO_CONTENT, {});
       }
