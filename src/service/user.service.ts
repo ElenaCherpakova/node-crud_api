@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { IUser, UserDto } from './types/user.iterface.ts';
+import { IUser, UserDto } from '../types/user.iterface.ts';
 
 export let users: IUser[] = [];
 
@@ -10,7 +10,7 @@ export const getUserById = async (id: string): Promise<IUser | undefined> => {
 };
 export const createUser = async (newUser: UserDto): Promise<IUser> => {
   const id = v4();
-  const createUser = { ...newUser, id };
+  const createUser = { id, ...newUser };
   users.push(createUser);
   return createUser;
 };

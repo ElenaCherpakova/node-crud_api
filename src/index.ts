@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
-import { userRoutes } from './userRoutes.ts';
+import { userRoutes } from './routes/routes.ts';
 import { createServer, IncomingMessage, ServerResponse } from 'http';
+import { HttpStatusCode } from './types/http-status.interface.ts';
 dotenv.config();
 
 if (!process.env.PORT) {
@@ -9,11 +10,21 @@ if (!process.env.PORT) {
 
 const server = createServer(
   async (req: IncomingMessage, res: ServerResponse) => {
-    await userRoutes(req, res);
+    try {
+      await userRoutes(req, res);
+    } catch (error) {
+      console.error(error);
+      res.writeHead(HttpStatusCode.INTERNAL_SERVER, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ message: 'Internal server error' }));
+    }
   },
 );
 const PORT: number = parseInt(process.env.PORT as string, 10) || 3000;
 
 server.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
+});
+
+server.on('error', (err) => {
+  console.log('Server Error', err);
 });

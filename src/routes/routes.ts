@@ -5,12 +5,12 @@ import {
   getAllUsers,
   getUserById,
   updateUser,
-} from './user.service.ts';
-import { sendResponse } from './helper/responses.ts';
-import { HttpStatusCode } from './types/http-status.interface.ts';
+} from '../service/user.service.ts';
+import { sendResponse } from '../responses.ts';
+import { HttpStatusCode } from '../types/http-status.interface.ts';
 import { validate } from 'uuid';
-import { parseRequestBody } from './helper/parseReqBody.ts';
-import { UserDto } from './types/user.iterface.ts';
+import { parseRequestBody } from '../utils/parseReqBody.ts';
+import { UserDto } from '../types/user.iterface.ts';
 
 export const userRoutes = async (
   req: IncomingMessage,
@@ -18,6 +18,12 @@ export const userRoutes = async (
 ): Promise<void> => {
   try {
     const { url, method } = req;
+
+    if (!url) {
+      return sendResponse(res, HttpStatusCode.BAD_REQUEST, {
+        message: 'URL not provided',
+      });
+    }
     if (url === '/api/users') {
       if (method === 'GET') {
         const users = await getAllUsers();
@@ -106,9 +112,7 @@ export const userRoutes = async (
           });
         }
         await deleteUser(userId);
-        res.writeHead(HttpStatusCode.NO_CONTENT);
-        res.end();
-        return;
+        return sendResponse(res, HttpStatusCode.NO_CONTENT, {});
       }
       return sendResponse(res, HttpStatusCode.METHOD_NOT_ALLOWED, {
         message: 'Method not allowed',
