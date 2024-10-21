@@ -35,8 +35,15 @@ This repository contains a detailed guide for installing, running, and using the
   ```bash
   npm run start:prod
   ```
+
 ### Run test
 
 ```bash
   npm run jest
+```
+
+### Run cluster
+
+```bash
+ npm run start:multi
 ```
