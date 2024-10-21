@@ -10,7 +10,9 @@
         "test:verbose": "jest",
         "test:watch": "jest --watch",
         "format": "prettier --write \"src/**/*.ts\"",
-        "lint": "eslint ./src"
+        "lint": "eslint ./src",
+        "jest": "jest --detectOpenHandles"
+
     },
     "author": "",
     "license": "ISC",
@@ -19,6 +21,7 @@
         "@eslint/js": "^9.13.0",
         "@types/jest": "^29.5.13",
         "@types/node": "^22.7.7",
+        "@types/supertest": "^6.0.2",
         "@types/uuid": "^10.0.0",
         "@types/webpack-node-externals": "^3.0.4",
         "cross-env": "^7.0.3",
@@ -32,6 +35,7 @@
         "nodemon": "^3.1.7",
         "prettier": "^3.3.3",
         "prettier-plugin-organize-imports": "^4.1.0",
+        "supertest": "^7.0.0",
         "ts-jest": "^29.2.5",
         "ts-loader": "^9.5.1",
         "ts-node": "^10.9.2",
