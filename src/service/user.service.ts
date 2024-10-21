@@ -35,4 +35,5 @@ export const deleteUser = async (id: string): Promise<null | void> => {
       return null
     }
     users = users.filter((user) => user.id !== id);
+    return;
 };
