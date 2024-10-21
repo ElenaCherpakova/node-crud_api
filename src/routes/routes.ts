@@ -10,7 +10,7 @@ import { sendResponse } from '../responses';
 import { HttpStatusCode } from '../types/http-status.interface';
 import { validate } from 'uuid';
 import { parseRequestBody } from '../utils/parseReqBody';
-import { UserDto } from '../types/user.iterface';
+import { UserDto } from '../types/user.interface';
 
 export const userRoutes = async (
   req: IncomingMessage,
