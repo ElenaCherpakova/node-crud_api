@@ -18,10 +18,10 @@ export const createUser = async (newUser: UserDto): Promise<IUser> => {
 export const updateUser = async (
   id: string,
   updateUser: Partial<UserDto>,
-): Promise<IUser | undefined> => {
+): Promise<IUser | null> => {
   const findUserIndex = users.findIndex((user) => user.id === id);
   if (findUserIndex === -1) {
-    throw new Error('User not found');
+    return null
   }
   const findUser = users[findUserIndex];
   const updatedUser: IUser = { ...findUser, ...updateUser };
@@ -29,11 +29,10 @@ export const updateUser = async (
   return updatedUser;
 };
 
-export const deleteUser = async (id: string): Promise<IUser | undefined> => {
+export const deleteUser = async (id: string): Promise<null | void> => {
     const findUser = users.find((user) => user.id === id);
     if (!findUser) {
-      throw new Error('User not found');
+      return null
     }
     users = users.filter((user) => user.id !== id);
-    return findUser;
 };
