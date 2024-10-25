@@ -78,7 +78,3 @@ This repository contains a detailed guide for installing, running, and using the
   "hobbies": ["reading", "coding"]
 }
 ```
-
-### Error Handling
-- **Non-existing endpoints**: Return a 404 with a human-readable message.
-- **Server-side errors**: Return a 500 with an appropriate message.
